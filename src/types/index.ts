@@ -5,4 +5,11 @@ export interface ImageData {
 }
 export interface ImageGridProps {
   images?: ImageData[];
+  setCurrent: React.Dispatch<React.SetStateAction<number>>;
+}
+export interface CurrentCarouselImage {
+  length: number;
+  url?: string;
+  index: number;
+  setCurrent: React.Dispatch<React.SetStateAction<number>>;
 }
