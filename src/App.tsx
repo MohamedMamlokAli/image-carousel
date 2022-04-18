@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ImageData } from './types';
 import axios from 'axios';
+import ImageGrid from './components/ImageGrid';
 function App() {
   const fetchImages = async () => {
     const images: ImageData[] = await (
@@ -16,7 +17,11 @@ function App() {
   useEffect(() => {
     fetchImages();
   }, []);
-  return <div className='App text-red-400'></div>;
+  return (
+    <div className='App text-red-400'>
+      <ImageGrid images={images} />
+    </div>
+  );
 }
 
 export default App;
