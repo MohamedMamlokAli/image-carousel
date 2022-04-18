@@ -24,10 +24,11 @@ function App() {
   }, []);
   return (
     <div className='App text-center relative'>
-      <h1 className='text-4xl mb-3'>Image Crousel</h1>
-      <ImageGrid images={images} setCurrent={setCurrent} />
+      <h1 className='text-4xl mb-3'>Image Carousel</h1>
+      <ImageGrid images={images} setCurrent={setCurrent} current={current} />
       {current > -1 && (
         <CarouselModal
+          title={images ? images[current].name : ''}
           index={current}
           url={images ? images[current].url : ''}
           setCurrent={setCurrent}

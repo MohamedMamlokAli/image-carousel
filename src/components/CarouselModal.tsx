@@ -6,29 +6,62 @@ const CarouselModal: React.FC<CurrentCarouselImage> = ({
   length,
   url,
   setCurrent,
+  title,
 }) => {
   return (
-    <div className='sticky h-screen inset-0 flex  items-center justify-center '>
+    <div className='fixed h-screen inset-0 flex flex-col md:flex-row items-center justify-around '>
+      {/* Carousel Background when clicked, it closes the carousel */}
       <div
-        className='absolute bg-black w-full h-full'
+        className='absolute bg-black opacity-90 w-full h-full'
         onClick={() => setCurrent(-1)}
       ></div>
-      <div className='z-50 w-full text-white flex justify-evenly'>
+      {/* Main carousel content */}
+      <div className='z-50 w-full md:w-max  h-max text-white flex items-center justify-between  '>
+        {/* Previous image button */}
         <button
           onClick={() => setCurrent(index - 1 < 0 ? length : index - 1)}
-          className='bg-white text-black px-5 py-2'
+          className='bg-white text-black w-20 py-2 hidden md:block absolute left-2'
         >
           Previous
         </button>
-        <div>
-          <img src={url} alt='' className='w-full h-full' />
-          <p>
-            Image {index + 1} / {length + 1}{' '}
-          </p>
+        {/* Image details  */}
+        <div className=' relative md:max-w-lg lg:max-w-2xl 2xl:max-w-3xl text-center mx-auto space-y-4 flex-1 '>
+          <div className='relative  mx-auto'>
+            <img
+              src={url}
+              alt=''
+              className=' w-full  aspect-video md:aspect-square object-cover'
+            />
+            <div className='absolute bottom-0  text-center w-full backdrop-blur-lg py-1 bg-opacity-75 bg-black '>
+              <p>{title}</p>
+            </div>
+          </div>
+          <div id='Image-counter' className=''>
+            <p>
+              Image {index + 1} / {length + 1}
+            </p>
+          </div>
+          {/* Mobile image navigator */}
+          <div className=' md:hidden  h-10 flex w-full justify-around'>
+            <button
+              onClick={() => setCurrent(index - 1 < 0 ? length : index - 1)}
+              className='bg-white text-black w-20 py-2  md:hidden'
+            >
+              Previous
+            </button>
+            <button
+              onClick={() => setCurrent(index + 1 > length ? 0 : index + 1)}
+              className='bg-white text-black w-20 py-2  md:hidden'
+            >
+              Next
+            </button>
+          </div>
         </div>
+
+        {/* Next Image button */}
         <button
           onClick={() => setCurrent(index + 1 > length ? 0 : index + 1)}
-          className='bg-white text-black px-5 py-2'
+          className='bg-white text-black w-20 py-2 hidden md:block absolute right-2'
         >
           Next
         </button>
