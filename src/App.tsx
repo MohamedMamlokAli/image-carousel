@@ -17,9 +17,6 @@ function App() {
   const [images, setImages] = useState<ImageData[]>();
   const [current, setCurrent] = useState(-1);
   useEffect(() => {
-    console.log(current);
-  }, [current]);
-  useEffect(() => {
     fetchImages();
   }, []);
   return (
